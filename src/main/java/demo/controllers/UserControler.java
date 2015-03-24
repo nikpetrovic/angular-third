@@ -3,14 +3,20 @@
  */
 package demo.controllers;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.model.User;
+import demo.repository.UserRepository;
 
 /**
  * @author nikolapetrovic
@@ -20,33 +26,37 @@ import demo.model.User;
 @RestController
 @RequestMapping("/users")
 public class UserControler {
-    private List<User> _users;
-
-    public UserControler() {
-	_users = new ArrayList<User>() {
-	    {
-		add(new User("1", "Nikola", "Petrovic", "nikola.petrovic"));
-		add(new User("2", "Matija", "Vukomanovic", "matija.vukomanovic"));
-		add(new User("3", "Andrijana", "Golubovska",
-			"andrijan.golubovska"));
-		add(new User("4", "Goran", "Gjorgoski", "goran.gjorgoski"));
-		add(new User("5", "Andzela", "Stojanoska", "andzela.stojanoska"));
-	    }
-	};
-    }
+    @Autowired
+    private UserRepository _userRepository;
 
     @RequestMapping(value = "/user/{userId}")
     public User findById(@PathVariable String userId) {
-	for (User user : _users) {
-	    if (user.getId().equals(userId)) {
-		return user;
-	    }
-	}
-	return _users.get(2);
+	User user = getUserRepository().findOne(userId);
+	return user;
+    }
+
+    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
+    public Map<String, String> createUser(@RequestBody User user) {
+	System.out.println("########## user created @@@@@@@@@");
+	Optional<User> existingUser = getUserRepository().findByUsername(
+		user.getUsername());
+
+	System.out.println();
+
+	System.out.println(user);
+
+	Map<String, String> map = new HashMap<>();
+	map.put("status", "failed");
+
+	return map;
     }
 
     @RequestMapping(value = "/list")
     public List<User> list() {
-	return _users;
+	return getUserRepository().findAll();
+    }
+
+    private UserRepository getUserRepository() {
+	return _userRepository;
     }
 }

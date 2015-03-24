@@ -3,54 +3,75 @@
  */
 package demo.model;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * @author nikolapetrovic
  * @created Mar 17, 2015
  *
  */
 public class User {
-    private String _firstName;
-    private String _id;
-    private String _lastName;
-    private String _username;
+    private String firstName;
+    private String id;
+    private String lastName;
+    private String username;
+
+    public User() {
+	super();
+    }
+
+    public User(String firstName, String lastName, String username) {
+	super();
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.username = username;
+    }
 
     public User(String id, String firstName, String lastName, String username) {
 	super();
-	_id = id;
-	_firstName = firstName;
-	_lastName = lastName;
-	_username = username;
+	this.id = id;
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.username = username;
     }
 
     public String getFirstName() {
-	return _firstName;
+	return firstName;
     }
 
+    @Id
     public String getId() {
-	return _id;
+	return id;
     }
 
     public String getLastName() {
-	return _lastName;
+	return lastName;
     }
 
     public String getUsername() {
-	return _username;
+	return username;
     }
 
     public void setFirstName(String firstName) {
-	_firstName = firstName;
+	this.firstName = firstName;
     }
 
     public void setId(String id) {
-	_id = id;
+	this.id = id;
     }
 
     public void setLastName(String lastName) {
-	_lastName = lastName;
+	this.lastName = lastName;
     }
 
     public void setUsername(String username) {
-	_username = username;
+	this.username = username;
+    }
+
+    @Override
+    public String toString() {
+	return String.format(
+		"User[id=%s, firstName='%s', lastName='%s', username='%s']",
+		getId(), getFirstName(), getLastName(), getUsername());
     }
 }
