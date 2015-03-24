@@ -21,7 +21,7 @@
   <i>User</i>
 </button>
 
-<button class="btn btn-danger" ng-click="clickTest()">click</button>
+<button class="btn btn-success" ng-click="showAModal()">Modal Service</button>
 
 <!-- Modal -->
 <div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalLabel"
@@ -61,9 +61,6 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           <button type="submit" class="btn btn-primary" ng-click="createUser()">Save</button>
-          
-          <div ng-bind="message">{{message}}</div>
-          <input type="text" ng-model="message"/>
         </div>
       </form>
     </div>

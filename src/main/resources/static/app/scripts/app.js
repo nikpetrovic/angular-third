@@ -2,20 +2,21 @@
 
 /**
  * @ngdoc overview
- * @name myAwesomeAppApp
+ * @name myAwesomeApp
  * @description
- * # myAwesomeAppApp
+ * # myAwesomeApp
  *
  * Main module of the application.
  */
 angular
-  .module('myAwesomeAppApp', [
+  .module('myAwesomeApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'angularModalService'
   ])
   .config(function ($routeProvider) {
     $routeProvider
