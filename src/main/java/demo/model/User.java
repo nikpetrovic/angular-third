@@ -15,6 +15,7 @@ public class User {
     private String firstName;
     private String id;
     private String lastName;
+    private boolean systemUser = false;
     private String username;
 
     public User() {
@@ -28,6 +29,16 @@ public class User {
 	this.lastName = lastName;
 	this.username = username;
 	this.description = description;
+    }
+
+    public User(String firstName, String lastName, String username,
+	    String description, boolean systemUser) {
+	super();
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.username = username;
+	this.description = description;
+	this.systemUser = systemUser;
     }
 
     public String getDescription() {
@@ -51,6 +62,10 @@ public class User {
 	return username;
     }
 
+    public boolean isSystemUser() {
+	return systemUser;
+    }
+
     public void setDescription(String description) {
 	this.description = description;
     }
@@ -65,6 +80,10 @@ public class User {
 
     public void setLastName(String lastName) {
 	this.lastName = lastName;
+    }
+
+    public void setSystemUser(boolean systemUser) {
+	this.systemUser = systemUser;
     }
 
     public void setUsername(String username) {
