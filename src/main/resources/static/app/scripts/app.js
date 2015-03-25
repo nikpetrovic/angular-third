@@ -15,8 +15,7 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
-    'angularModalService'
+    'ngTouch'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -27,6 +26,10 @@ angular
       .when('/users/list', {
         templateUrl: 'views/users.html',
         controller: 'UserCtrl'
+      })
+      .when('/users/user/:userId', {
+        templateUrl: 'views/userProfile.html',
+        controller: 'UserProfileCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

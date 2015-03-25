@@ -29,26 +29,29 @@ public class UserControler {
     @Autowired
     private UserRepository _userRepository;
 
+    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
+    public Map<String, String> createUser(@RequestBody User user) {
+	Optional<User> existingUser = getUserRepository().findByUsername(
+		user.getUsername());
+
+	Map<String, String> map = new HashMap<>();
+	if (existingUser.isPresent()) {
+	    map.put("status", "failed");
+	    map.put("message", String.format(
+		    "User with username '%s' already exists",
+		    user.getUsername()));
+	} else {
+	    getUserRepository().save(user);
+	    map.put("status", "succeeded");
+	}
+
+	return map;
+    }
+
     @RequestMapping(value = "/user/{userId}")
     public User findById(@PathVariable String userId) {
 	User user = getUserRepository().findOne(userId);
 	return user;
-    }
-
-    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
-    public Map<String, String> createUser(@RequestBody User user) {
-	System.out.println("########## user created @@@@@@@@@");
-	Optional<User> existingUser = getUserRepository().findByUsername(
-		user.getUsername());
-
-	System.out.println();
-
-	System.out.println(user);
-
-	Map<String, String> map = new HashMap<>();
-	map.put("status", "failed");
-
-	return map;
     }
 
     @RequestMapping(value = "/list")

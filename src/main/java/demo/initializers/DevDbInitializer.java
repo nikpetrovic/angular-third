@@ -40,13 +40,15 @@ public class DevDbInitializer {
     private List<User> createUsers() {
 	return new ArrayList<User>() {
 	    {
-		add(new User("Borche", "Alcinov", "borce.alcinov"));
-		add(new User("Matija", "Vukomanovic", "matija.vukomanovic"));
-		add(new User("Andrijana", "Golubovska", "andrijan.golubovska"));
-		add(new User("Goran", "Gjorgoski", "goran.gjorgoski"));
-		add(new User("Andzela", "Stojanoska", "andzela.stojanoska"));
-		add(new User("Dejan", "Korcev", "dejan.korcev"));
-		add(new User("Nikola", "Petrovic", "nikola.petrovic"));
+		// @formatter:off
+		add(new User("Borche", "Alcinov", "borce.alcinov", null));
+		add(new User("Matija", "Vukomanovic", "matija.vukomanovic", "A funny, attractive child with animal DNA and a body in the closet who is from the sea and lives with a magical being."));
+		add(new User("Andrijana", "Golubovska", "andrijan.golubovska", null));
+		add(new User("Goran", "Gjorgoski", "goran.gjorgoski", null));
+		add(new User("Andzela", "Stojanoska", "andzela.stojanoska", null));
+		add(new User("Dejan", "Korcev", "dejan.korcev", null));
+		add(new User("Nikola", "Petrovic", "nikola.petrovic", "A mysterious, gorgeous old man with a human skull and a lust for power who is from a creepy city in by the ocean and lives with cannibals."));
+		// @formatter:on
 	    }
 	};
     }

@@ -11,6 +11,7 @@ import org.springframework.data.annotation.Id;
  *
  */
 public class User {
+    private String description;
     private String firstName;
     private String id;
     private String lastName;
@@ -20,19 +21,17 @@ public class User {
 	super();
     }
 
-    public User(String firstName, String lastName, String username) {
+    public User(String firstName, String lastName, String username,
+	    String description) {
 	super();
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.username = username;
+	this.description = description;
     }
 
-    public User(String id, String firstName, String lastName, String username) {
-	super();
-	this.id = id;
-	this.firstName = firstName;
-	this.lastName = lastName;
-	this.username = username;
+    public String getDescription() {
+	return description;
     }
 
     public String getFirstName() {
@@ -50,6 +49,10 @@ public class User {
 
     public String getUsername() {
 	return username;
+    }
+
+    public void setDescription(String description) {
+	this.description = description;
     }
 
     public void setFirstName(String firstName) {
