@@ -38,7 +38,7 @@ public class UserControler {
 	if (existingUser.isPresent()) {
 	    map.put("status", "failed");
 	    map.put("message", String.format(
-		    "User with username '%s' already exists",
+		    "User with username '%s' already exists.",
 		    user.getUsername()));
 	} else {
 	    getUserRepository().save(user);

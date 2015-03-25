@@ -1,11 +1,14 @@
 <ul class="media-list">
   <li class="media">
     <div class="media-left">
-      <img alt="{{user.username}}" ng-src="images/{{user.username}}.png" />
+      <div class="thumbnail" align="center">
+        <img alt="{{user.username}}" ng-src="images/{{user.username}}.png" />
+        <div class="label label-info">{{user.username}}</div>
+      </div>
     </div>
     <div class="media-body">
       <h4 class="media-heading">{{user.firstName}} {{user.lastName}}</h4>
-      {{user.description}}
+      <p>{{user.description}}</p>
     </div>
   </li>
 </ul>
