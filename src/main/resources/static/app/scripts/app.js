@@ -26,14 +26,11 @@ angular.module('myAwesomeApp', [ 'ngAnimate', 'ngCookies', 'ngResource', 'ngRout
 			});
 
 			flowFactoryProvider.defaults = {
-				target : 'upload.php',
-				permanentErrors : [ 404, 500, 501 ],
+				target : '/content/upload',
+				permanentErrors : [ 500, 501 ],
 				maxChunkRetries : 1,
 				chunkRetryInterval : 5000,
 				simultaneousUploads : 1,
 				singleFile : true
 			};
-			flowFactoryProvider.on('catchAll', function(event) {
-				console.log('catchAll', arguments);
-			});
 		} ]);

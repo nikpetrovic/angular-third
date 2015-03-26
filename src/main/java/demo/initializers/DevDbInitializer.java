@@ -3,6 +3,7 @@
  */
 package demo.initializers;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
 import demo.model.User;
+import demo.repository.ContentRepository;
 import demo.repository.UserRepository;
 
 /**
@@ -24,16 +29,26 @@ import demo.repository.UserRepository;
 @Profile("dev")
 public class DevDbInitializer {
     @Autowired
-    private UserRepository _userRepository;
+    private ContentRepository contentRepository;
 
-    private UserRepository getUserRepository() {
-	return _userRepository;
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     @PostConstruct
     public void initialize() {
 	if (getUserRepository().count() == 0) {
-	    getUserRepository().save(createUsers());
+	    List<User> users = createUsers();
+	    for (User user : users) {
+		getUserRepository().save(user);
+		DBObject metaData = new BasicDBObject();
+		metaData.put("userId", user.getId());
+		InputStream is = getClass().getClassLoader()
+			.getResourceAsStream(
+				"static/dev/images/" + user.getUsername()
+					+ ".png");
+		getContentRepository().store(is, user.getUsername() + ".png",
+			"image/png", metaData);
+	    }
 	}
     }
 
@@ -51,5 +66,13 @@ public class DevDbInitializer {
 		// @formatter:on
 	    }
 	};
+    }
+
+    private ContentRepository getContentRepository() {
+	return contentRepository;
+    }
+
+    private UserRepository getUserRepository() {
+	return userRepository;
     }
 }

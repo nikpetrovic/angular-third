@@ -2,13 +2,44 @@
   <li class="media">
     <div class="media-left">
       <div class="thumbnail" align="center">
-        <img alt="{{user.username}}" ng-src="images/{{user.username}}.png" />
+        <!--         <img alt="{{user.username}}" ng-src="images/{{user.username}}.png" /> -->
+        <img alt="{{user.username}}" ng-src="/content/user/{{user.id}}" height="112" width="112" />
         <div class="label label-info">{{user.username}}</div>
       </div>
     </div>
     <div class="media-body">
       <h4 class="media-heading">{{user.firstName}} {{user.lastName}}</h4>
       <p>{{user.description}}</p>
+
+      <hr class="soft" />
+      <div ng-switch="user.systemUser" class="col-md-12" align="right">
+        <label ng-switch-when="true" class="label label-default">This user cannot be deleted.</label>
+        <button ng-switch-when="false" type="button" class="btn btn-danger" data-toggle="modal"
+          data-target="#userDeletionConfirmationModal">Delete</button>
+      </div>
     </div>
   </li>
 </ul>
+
+<!-- Modal -->
+<div class="modal fade" id="userDeletionConfirmationModal" tabindex="-1" role="dialog"
+  aria-labelledby="userDeletionConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="userDeletionConfirmationModalLabel">User deletion confirmation</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete '<b>{{user.firstName}} {{user.lastName}}</b>'?
+      </div>
+      <div ng-show="message != null" class="alert alert-danger">{{message}}</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" ng-click="deleteUser(user)">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

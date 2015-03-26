@@ -34,18 +34,41 @@ public class UserControler {
 	Optional<User> existingUser = getUserRepository().findByUsername(
 		user.getUsername());
 
-	Map<String, String> map = new HashMap<>();
+	Map<String, String> response = new HashMap<>();
 	if (existingUser.isPresent()) {
-	    map.put("status", "failed");
-	    map.put("message", String.format(
+	    response.put("status", "failed");
+	    response.put("message", String.format(
 		    "User with username '%s' already exists.",
 		    user.getUsername()));
 	} else {
 	    getUserRepository().save(user);
-	    map.put("status", "succeeded");
+	    response.put("status", "succeeded");
+	    response.put("userId", user.getId());
 	}
 
-	return map;
+	return response;
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public Map<String, String> deleteUser(@RequestBody User user) {
+	User existingUser = getUserRepository().findOne(user.getId());
+
+	Map<String, String> response = new HashMap<>();
+	if (existingUser == null) {
+	    response.put("status", "failed");
+	    response.put(
+		    "message",
+		    String.format("The user with id '%s' does not exist.",
+			    user.getId()));
+	} else if (existingUser.isSystemUser()) {
+	    response.put("status", "failed");
+	    response.put("message", "The system user cannot be deleted.");
+	} else {
+	    getUserRepository().delete(existingUser);
+	    response.put("status", "succeeded");
+	}
+
+	return response;
     }
 
     @RequestMapping(value = "/user/{userId}")
