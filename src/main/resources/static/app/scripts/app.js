@@ -26,7 +26,8 @@ angular.module('myAwesomeApp', [ 'ngAnimate', 'ngCookies', 'ngResource', 'ngRout
 			});
 
 			flowFactoryProvider.defaults = {
-				target : '/content/upload',
+				chunkSize : 1 * 1024 * 200, // 200k
+				progressCallbacksInterval : 250,
 				permanentErrors : [ 500, 501 ],
 				maxChunkRetries : 1,
 				chunkRetryInterval : 5000,
