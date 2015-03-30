@@ -41,7 +41,6 @@
 			<version>2.4</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
@@ -93,6 +92,19 @@
 						</goals>
 					</execution>
 					<execution>
+						<id>exec-bower-cache-clean</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<executable>bower</executable>
+							<arguments>
+								<argument>cache clean</argument>
+							</arguments>
+						</configuration>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+					<execution>
 						<id>exec-bower-install</id>
 						<phase>generate-sources</phase>
 						<configuration>
@@ -110,24 +122,15 @@
 						<phase>process-resources</phase>
 						<configuration>
 							<executable>grunt</executable>
+							<arguments>
+								<argument>build</argument>
+							</arguments>
 						</configuration>
 						<goals>
 							<goal>exec</goal>
 						</goals>
 					</execution>
-					<execution>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-					</execution>
 				</executions>
-				<configuration>
-					<executable>grunt</executable>
-					<arguments>
-						<argument>build</argument>
-					</arguments>
-				</configuration>
 			</plugin>
 
 			<plugin>
