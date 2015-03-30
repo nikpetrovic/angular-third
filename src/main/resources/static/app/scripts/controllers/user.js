@@ -38,6 +38,8 @@ angular
 										if ($scope.uploader.flow.files[0] != null) {
 											$scope.uploader.flow.opts.query.userId = response.data.userId;
 											$scope.uploader.flow.files[0].retry();
+										} else {
+											closeCreateUserDialog();
 										}
 									} else {
 										$scope.message = response.data.message;
@@ -61,6 +63,10 @@ angular
 							}
 
 							$scope.onUploadCompleted = function() {
+								closeCreateUserDialog();
+							}
+							
+							function closeCreateUserDialog() {
 								$("#createUserModal").on('hidden.bs.modal', function() {
 									$route.reload();
 								});
