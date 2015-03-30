@@ -6,7 +6,6 @@ package demo.controllers;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,11 +30,11 @@ public class UserControler {
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public Map<String, String> createUser(@RequestBody User user) {
-	Optional<User> existingUser = getUserRepository().findByUsername(
+	User existingUser = getUserRepository().findByUsername(
 		user.getUsername());
 
 	Map<String, String> response = new HashMap<>();
-	if (existingUser.isPresent()) {
+	if (existingUser != null) {
 	    response.put("status", "failed");
 	    response.put("message", String.format(
 		    "User with username '%s' already exists.",

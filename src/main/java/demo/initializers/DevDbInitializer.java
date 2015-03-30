@@ -26,7 +26,7 @@ import demo.repository.UserRepository;
  *
  */
 @Component
-@Profile("dev")
+@Profile({ "dev", "prod" })
 public class DevDbInitializer {
     @Autowired
     private ContentRepository contentRepository;
