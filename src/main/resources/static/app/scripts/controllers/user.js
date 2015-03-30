@@ -13,10 +13,11 @@ angular
 						'$scope',
 						'$http',
 						'$route',
-						function($scope, $http, $route) {
+						'$location',
+						function($scope, $http, $route, $location, $locationProvidern) {
 							$scope.uploader = {};
-
-							$http.get('/users/list').then(function(response) {
+							
+							$http.get('users/list').then(function(response) {
 								$scope.users = response.data;
 							});
 
@@ -33,11 +34,13 @@ angular
 
 							$scope.createUser = function() {
 								$scope.message = null;
-								$http.post('/users/createUser', $scope.newUser).then(function(response) {
+								$http.post('users/createUser', $scope.newUser).then(function(response) {
 									if (response.data.status === 'succeeded') {
 										if ($scope.uploader.flow.files[0] != null) {
 											$scope.uploader.flow.opts.query.userId = response.data.userId;
 											$scope.uploader.flow.files[0].retry();
+										} else {
+											closeCreateUserDialog();
 										}
 									} else {
 										$scope.message = response.data.message;
@@ -61,6 +64,10 @@ angular
 							}
 
 							$scope.onUploadCompleted = function() {
+								closeCreateUserDialog();
+							}
+							
+							function closeCreateUserDialog() {
 								$("#createUserModal").on('hidden.bs.modal', function() {
 									$route.reload();
 								});

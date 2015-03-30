@@ -62,6 +62,7 @@ public class DevDbInitializer {
 		add(new User("Goran", "Gjorgoski", "goran.gjorgoski", "A sneaky, ordinary-looking young adult with a time machine who is from Bangladesh and lives with a brother.", true));
 		add(new User("Andzela", "Stojanoska", "andzela.stojanoska", "A happy-go-lucky, distinctive-looking girl with psychic abilities who is from a quaint city in the arctic circle and lives with dad.", true));
 		add(new User("Dejan", "Korcev", "dejan.korcev", "A lovable, disfigured man with an ant farm and a lust for power who is from a parallel dimension and lives with an aunt and uncle.", true));
+		add(new User("Dragan", "Simeonovski", "dragan.simeonovski", "A brainy, fine-boned man with an eyepatch and a strange weapon who is from the arctic circle and lives with an alien.", true));
 		add(new User("Nikola", "Petrovic", "nikola.petrovic", "A mysterious, gorgeous old man with a human skull and a lust for power who is from a creepy city in by the ocean and lives with cannibals.", true));
 		// @formatter:on
 	    }
