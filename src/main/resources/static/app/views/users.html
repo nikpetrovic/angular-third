@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="user in users | filter:filterUsers">
+    <tr ng-repeat="user in users | filter:filterUsers" class="animate">
       <td>
         <a ng-href="#/users/user/{{user.id}}">{{user.firstName}}</a>
       </td>
