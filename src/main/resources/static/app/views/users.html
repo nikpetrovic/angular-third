@@ -47,7 +47,7 @@
           <ul class="media-list">
             <li class="media">
               <div class="media-left">
-                <div flow-init="{target: '/content/upload', testChunks: false, method: 'POST'}"
+                <div flow-init="{target: 'content/upload', testChunks: false, method: 'POST'}"
                   flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow-name="uploader.flow"
                   flow-files-submitted="checkFileSize()" flow-error="onUploadError()"
                   flow-file-success="onUploadCompleted()">
