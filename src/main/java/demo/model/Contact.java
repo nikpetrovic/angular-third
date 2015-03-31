@@ -1,5 +1,7 @@
 package demo.model;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 
 /**
@@ -8,6 +10,7 @@ import org.springframework.data.annotation.Id;
  *
  */
 public class Contact {
+    private Date dateCreated;
     private String email;
     private String id;
     private String message;
@@ -15,6 +18,10 @@ public class Contact {
 
     public Contact() {
 	super();
+    }
+
+    public Date getDateCreated() {
+	return dateCreated;
     }
 
     public String getEmail() {
@@ -32,6 +39,10 @@ public class Contact {
 
     public String getName() {
 	return name;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+	this.dateCreated = dateCreated;
     }
 
     public void setEmail(String email) {

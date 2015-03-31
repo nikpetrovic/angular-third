@@ -1,5 +1,7 @@
 package demo.repository;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import demo.model.Contact;
@@ -10,5 +12,5 @@ import demo.model.Contact;
  *
  */
 public interface ContactRepository extends MongoRepository<Contact, String> {
-
+    List<Contact> findTop5ByOrderByDateCreatedDesc();
 }

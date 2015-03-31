@@ -1,6 +1,8 @@
 package demo.controllers;
 
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +23,24 @@ import demo.repository.ContactRepository;
 @RequestMapping("/contact")
 public class ContactController {
     @Autowired
-    private ContactRepository _contactRepository;
+    private ContactRepository contactRepository;
 
     @RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
     public Map<String, String> sendMessage(@RequestBody Contact contact) {
-
 	Map<String, String> response = new HashMap<>();
+	contact.setDateCreated(Calendar.getInstance().getTime());
 	getContactRepository().save(contact);
 	response.put("status", "succeeded");
 
 	return response;
     }
 
+    @RequestMapping("/viewLastMessages")
+    public List<Contact> viewLastMessages() {
+	return getContactRepository().findTop5ByOrderByDateCreatedDesc();
+    }
+
     private ContactRepository getContactRepository() {
-	return _contactRepository;
+	return contactRepository;
     }
 }

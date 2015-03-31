@@ -1,0 +1,20 @@
+<h4>Last Messages Received</h4>
+<div ng-repeat="msg in contactMessages">
+  <div class="row">
+    <div class="post-meta">
+      <h1 class="content-subhead">Pinned Post</h1>
+      <div class="col-md-4">
+        <div ng-show="msg.dateCreated">
+          <span class=" labellabel-info"> {{msg.dateCreated | date: 'medium'}} </span>
+          <br />
+        </div>
+        <span>
+          by <b class="text text-info">{{msg.name}}</b>
+        </span>
+      </div>
+      <div class="col-md-8">
+        <cite> {{msg.message}} </cite>
+      </div>
+    </div>
+  </div>
+</div>

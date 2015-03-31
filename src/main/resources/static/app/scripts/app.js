@@ -20,6 +20,9 @@ angular.module('myAwesomeApp', [ 'ngAnimate', 'ngCookies', 'ngResource', 'ngRout
 							}).when('/users/user/:userId', {
 								templateUrl : 'views/userProfile.html',
 								controller : 'UserProfileCtrl'
+							}).when('/contactMessages', {
+								templateUrl : 'views/contactMessages.html',
+								controller : 'ContactMessagesCtrl'
 							}).when('/about', {
 								templateUrl : 'views/about.html',
 								controller : 'AboutCtrl'

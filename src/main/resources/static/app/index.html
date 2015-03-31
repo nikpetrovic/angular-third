@@ -9,11 +9,13 @@
 <!-- build:css({src/main/resources/static}) styles/vendor.css -->
 <!-- bower:css -->
 <link rel="stylesheet" href="../../../../bower_components/pure/pure.css" />
+<link rel="stylesheet" href="../../../../bower_components/pure/grids-responsive.css" />
 <!-- endbower -->
 <!-- endbuild -->
 <!-- build:css({.tmp,src/main/resources/static/app}) styles/main.css -->
-<link rel="stylesheet" href="styles/main.css">
-<link rel="stylesheet" href="styles/bootstrap-flat-theme.min.css">
+<link rel="stylesheet" href="styles/main.css" />
+<link rel="stylesheet" href="styles/blog.css" />
+<link rel="stylesheet" href="styles/bootstrap-flat-theme.min.css" />
 <!-- endbuild -->
 </head>
 <body ng-app="myAwesomeApp">
@@ -34,7 +36,7 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="#/">myAwesomeApp</a>
+          <a class="navbar-brand" href="#/">OSL</a>
         </div>
 
         <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -47,6 +49,9 @@
               <a ng-href="#/users/list">Users</a>
             </li>
             <li role="tab" data-toggle="tab">
+              <a ng-href="#/contactMessages">Last Messages</a>
+            </li>
+            <li role="tab" data-toggle="tab">
               <a ng-href="#/about">About</a>
             </li>
           </ul>
@@ -56,14 +61,14 @@
   </div>
 
   <div class="container">
-    <div ng-view=""></div>
+    <div class="marketing" ng-view=""></div>
   </div>
 
   <div class="footer">
     <div class="container">
       <p>
         <span class="glyphicon glyphicon-heart"></span>
-        from the Yeoman team
+        from the OSL team
       </p>
     </div>
   </div>
@@ -104,6 +109,7 @@
   <script src="scripts/controllers/about.js"></script>
   <script src="scripts/controllers/user.js"></script>
   <script src="scripts/controllers/userProfile.js"></script>
+  <script src="scripts/controllers/contactMessages.js"></script>
   <!-- endbuild -->
 </body>
 </html>
