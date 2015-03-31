@@ -1,1 +1,58 @@
-<p>This is the about view.</p>
+<h4 align="center">Meet the OSL team</h4>
+<div class="row">
+  <div ng-repeat="user in users">
+    <div ng-switch="user.systemUser">
+      <div ng-switch-when="true">
+        <div class="col-md-3">
+          <a ng-href="#/users/user/{{user.id}}">
+            <img alt="{{user.username}}"
+              ng-src="/content/user/{{user.id}}" height="112"
+              width="112" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+<h4>Contact Us</h4>
+<p>If you have any feature requests, questions about life, TV Shows,
+  if you need support (moral or software), or just want to say "Hi",
+  please contact us.</p>
+<form name="form" novalidate="novalidate"
+  ng-submit="form.$valid && sendMessage()">
+  <div class="form-group">
+    <input type="text" name="name" placeholder="name"
+      class="form-control" required="required"
+      ng-model="newMessage.name" />
+    <div ng-show="form.$submitted && !newMessage.name"
+      class="text-danger">
+      Please enter <b>name</b> field.
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="email" name="email" placeholder="email"
+      class="form-control" required="required"
+      ng-model="newMessage.email" />
+    <div ng-show="form.$submitted && !newMessage.email"
+      class="text-danger">
+      Please enter <b>email</b> field.
+    </div>
+  </div>
+  <div class="form-group">
+    <textarea type="text" name="textarea" placeholder="message here"
+      class="form-control" required="required"
+      ng-model="newMessage.message"></textarea>
+    <div ng-show="form.$submitted && !newMessage.message"
+      class="text-danger">
+      Please enter <b>message</b> field.
+    </div>
+  </div>
+  <div ng-show="contactMessageSent && !form.$dirty && !form.$submitted"
+    class="alert alert-success">Thank you {{submittedName}} !
+    Message successfully sent</div>
+  <div ng-show="message != null" class="alert alert-danger">{{message}}</div>
+  <button type="submit" class="btn btn-primary">Send</button>
+</form>
+<br />
