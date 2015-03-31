@@ -1,117 +1,111 @@
-<div class="form-group">
-  <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
-</div>
+<div class="row">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+  </div>
 
-<table class="table table-bordered table-striped table-hover">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="user in users | filter:filterUsers">
-      <td>
-        <a ng-href="#/users/user/{{user.id}}">{{user.firstName}}</a>
-      </td>
-      <td>
-        <a ng-href="#/users/user/{{user.id}}">{{user.lastName}}</a>
-      </td>
-      <td>
-        <a ng-href="#/users/user/{{user.id}}">{{user.username}}</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in users | filter:filterUsers">
+        <td>
+          <a ng-href="#/users/user/{{user.id}}">{{user.firstName}}</a>
+        </td>
+        <td>
+          <a ng-href="#/users/user/{{user.id}}">{{user.lastName}}</a>
+        </td>
+        <td>
+          <a ng-href="#/users/user/{{user.id}}">{{user.username}}</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<button class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">
-  create new
-  <i>User</i>
-</button>
+  <button class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">
+    create new <i>User</i>
+  </button>
 
-<!-- Modal -->
-<div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form name="form" novalidate="novalidate" ng-submit="form.$valid && createUser()">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="createUserModalLabel">Create User</h4>
-        </div>
-        <div class="modal-body">
-          <ul class="media-list">
-            <li class="media">
-              <div class="media-left">
-                <div flow-init="{target: 'content/upload', testChunks: false, method: 'POST'}"
-                  flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow-name="uploader.flow"
-                  flow-files-submitted="checkFileSize()" flow-error="onUploadError()"
-                  flow-file-success="onUploadCompleted()">
-                  <div class="btn btn-default btn-file" flow-drag-enter="style={border: '2px solid green'}"
-                    flow-drag-leave="style={}" ng-style="style">
-                    <div class="alert" flow-drop flow-drag-enter="class='alert-success'" flow-drag-leave="class=''">
-                      <input type="file" flow-btn class="form-control" />
-                      <div ng-switch="$flow.files.length" align="center">
-                        <img ng-switch-when="0" src="images/noimage.png" height="112" width="112" />
-                        <img ng-switch-default class="img-responsive" flow-img="$flow.files[0]" height="112" width="112" />
+  <!-- Modal -->
+  <div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form name="form" novalidate="novalidate" ng-submit="form.$valid && createUser()">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="createUserModalLabel">Create User</h4>
+          </div>
+          <div class="modal-body">
+            <ul class="media-list">
+              <li class="media">
+                <div class="media-left">
+                  <div flow-init="{target: 'content/upload', testChunks: false, method: 'POST'}"
+                    flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow-name="uploader.flow"
+                    flow-files-submitted="checkFileSize()" flow-error="onUploadError()" flow-file-success="onUploadCompleted()">
+                    <div class="btn btn-default btn-file" flow-drag-enter="style={border: '2px solid green'}" flow-drag-leave="style={}"
+                      ng-style="style">
+                      <div class="alert" flow-drop flow-drag-enter="class='alert-success'" flow-drag-leave="class=''">
+                        <input type="file" flow-btn class="form-control" />
+                        <div ng-switch="$flow.files.length" align="center">
+                          <img ng-switch-when="0" src="images/noimage.png" height="112" width="112" />
+                          <img ng-switch-default class="img-responsive" flow-img="$flow.files[0]" height="112" width="112" />
+                        </div>
+                        <span class="label label-success">Drag And Drop your file here</span>
                       </div>
-                      <span class="label label-success">Drag And Drop your file here</span>
+                    </div>
+                    <hr class="soft" />
+                    <div class="progress" ng-style="progressStyle" style="visibility: hidden;"
+                      flow-complete="progressStyle={'visibility': 'hidden'}">
+                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                        aria-valuemax="100" ng-style="progressBarStyle"
+                        flow-file-progress="progressBarStyle={'width': '{{(($flow.sizeUploaded()/$flow.getSize())*100)}}'}; progressStyle={'visibility': 'visible'}">
+                      </div>
                     </div>
                   </div>
-                  <hr class="soft" />
-                  <div class="progress" ng-style="progressStyle" style="visibility: hidden;"
-                    flow-complete="progressStyle={'visibility': 'hidden'}">
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                      aria-valuemax="100" ng-style="progressBarStyle"
-                      flow-file-progress="progressBarStyle={'width': '{{(($flow.sizeUploaded()/$flow.getSize())*100)}}'}; progressStyle={'visibility': 'visible'}">
+                </div>
+                <div class="media-body">
+                  <div class="form-group">
+                    <input type="text" name="firstName" placeholder="first name" class="form-control" required="required"
+                      ng-model="newUser.firstName" />
+                    <div ng-show="form.$submitted && !newUser.firstName" class="text-danger">
+                      <span> Please enter <b>first name</b> field.
+                      </span>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="media-body">
-                <div class="form-group">
-                  <input type="text" name="firstName" placeholder="first name" class="form-control" required="required"
-                    ng-model="newUser.firstName" />
-                  <div ng-show="form.$submitted && !newUser.firstName" class="text-danger">
-                    <span>
-                      Please enter <b>first name</b> field.
-                    </span>
+                  <div class="form-group">
+                    <input type="text" placeholder="last name" class="form-control" required="required" ng-model="newUser.lastName" />
+                    <div ng-show="form.$submitted && !newUser.lastName" class="text-danger">
+                      <span> Please enter <b>last name</b> field.
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <input type="text" placeholder="last name" class="form-control" required="required"
-                    ng-model="newUser.lastName" />
-                  <div ng-show="form.$submitted && !newUser.lastName" class="text-danger">
-                    <span>
-                      Please enter <b>last name</b> field.
-                    </span>
+                  <div class="form-group">
+                    <input type="text" placeholder="username" class="form-control" required="required" ng-model="newUser.username" />
+                    <div ng-show="form.$submitted && !newUser.username" class="text-danger">
+                      <span> Please enter <b>username</b> field.
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <input type="text" placeholder="username" class="form-control" required="required"
-                    ng-model="newUser.username" />
-                  <div ng-show="form.$submitted && !newUser.username" class="text-danger">
-                    <span>
-                      Please enter <b>username</b> field.
-                    </span>
+                  <div class="form-group">
+                    <input type="text" placeholder="description" class="form-control" ng-model="newUser.description" />
                   </div>
+                  <div ng-show="message != null" class="alert alert-danger">{{message}}</div>
                 </div>
-                <div class="form-group">
-                  <input type="text" placeholder="description" class="form-control" ng-model="newUser.description" />
-                </div>
-                <div ng-show="message != null" class="alert alert-danger">{{message}}</div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-      </form>
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
