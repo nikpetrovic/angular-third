@@ -8,10 +8,10 @@ import org.springframework.data.annotation.Id;
  *
  */
 public class Contact {
-    private String name;
-    private String id;
     private String email;
+    private String id;
     private String message;
+    private String name;
 
     public Contact() {
 	super();
