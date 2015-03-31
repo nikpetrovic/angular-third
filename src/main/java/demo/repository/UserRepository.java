@@ -3,8 +3,6 @@
  */
 package demo.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import demo.model.User;
@@ -15,5 +13,5 @@ import demo.model.User;
  *
  */
 public interface UserRepository extends MongoRepository<User, String> {
-    Optional<User> findByUsername(String username);
+    User findByUsername(String username);
 }
