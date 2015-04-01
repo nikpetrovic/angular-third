@@ -9,12 +9,6 @@ body {
 	padding: 0;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header, .marketing, .footer {
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
 /* Custom page header */
 .header {
 	border-bottom: 1px solid #e5e5e5;
@@ -80,7 +74,7 @@ body {
 }
 
 /* Responsive: Portrait tablets and up */
-@media (min-width: 768px) {
+@media ( min-width : 768px) {
 	.container {
 		max-width: 730px;
 	}
@@ -95,7 +89,8 @@ body {
 		border-bottom: 0;
 	}
 }
-@media (max-width: 768px) {
+
+@media ( max-width : 768px) {
 	.container {
 		font-size: 80%;
 	}
