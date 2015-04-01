@@ -79,19 +79,6 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>exec-npm-cache-clean</id>
-						<phase>package</phase>
-						<configuration>
-							<executable>npm</executable>
-							<arguments>
-								<argument>cache clean</argument>
-							</arguments>
-						</configuration>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-					</execution>
-					<execution>
 						<id>exec-npm-install</id>
 						<phase>generate-sources</phase>
 						<configuration>
