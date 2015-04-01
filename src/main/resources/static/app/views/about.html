@@ -3,7 +3,7 @@
   <div ng-repeat="user in users">
     <div ng-switch="user.systemUser">
       <div ng-switch-when="true">
-        <div class="col-sm-3 col-xs-6">
+        <div class="col-xs-6 col-sm-4 col-md-3">
           <a ng-href="#/users/user/{{user.id}}">
             <img alt="{{user.username}}" ng-src="content/user/{{user.id}}" height="112" width="112" />
           </a>
