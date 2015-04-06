@@ -22,3 +22,5 @@ To start development change this property to:
 `spring.profiles.active=dev`
 
 and run MongoDB instance with default configuration. From eclipse IDE navigate to src/main/java and run `demo.DemoApplication.java` as Java Application. This way you will start embedded Tomcat Server and be able to access the application on [localhost:8080] (http://localhost:8080).
+
+The demo is [here](http://nikpetrovic.com/osl).
